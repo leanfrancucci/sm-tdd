@@ -36,9 +36,61 @@ tearDown(void)
 }
 
 void
-test_Init(void)
+test_AfterInitilizingDataAreSet(void)
 {
-    TEST_IGNORE_MESSAGE("Hello world!");
+    int x;
+
+    x = 8;
+    DoWhile_init(x);
+
+    TEST_ASSERT_EQUAL(StateA, doWhile->state);
+    TEST_ASSERT_EQUAL(x, doWhile->x);
+    TEST_ASSERT_EQUAL(0, doWhile->out);
+}
+
+void
+test_SingleIteration(void)
+{
+    int state, nIter = 1;
+
+    DoWhile_init(nIter);
+    state = DoWhile_dispatch(Start);
+    state = DoWhile_dispatch(Alpha);
+
+    TEST_ASSERT_EQUAL(StateC, state);
+    TEST_ASSERT_EQUAL(nIter, doWhile->out);
+}
+
+void
+test_MultipleIterations(void)
+{
+    int i, state, nIter = 4;
+
+    DoWhile_init(nIter);
+    state = DoWhile_dispatch(Start);
+    for (i = 0; i < nIter; ++i)
+    {
+        state = DoWhile_dispatch(Alpha);
+    }
+
+    TEST_ASSERT_EQUAL(StateC, state);
+    TEST_ASSERT_EQUAL(nIter, doWhile->out);
+}
+
+void
+test_NoneIteration(void)
+{
+    int i, state, nIter = 0;
+
+    DoWhile_init(nIter);
+    state = DoWhile_dispatch(Start);
+    for (i = 0; i < nIter; ++i)
+    {
+        state = DoWhile_dispatch(Alpha);
+    }
+
+    TEST_ASSERT_EQUAL(StateB, state);
+    TEST_ASSERT_EQUAL(nIter, doWhile->out);
 }
 
 /* ------------------------------ End of file ------------------------------ */

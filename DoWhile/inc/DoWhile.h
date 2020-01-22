@@ -25,9 +25,33 @@ extern "C" {
 
 /* --------------------------------- Macros -------------------------------- */
 /* -------------------------------- Constants ------------------------------ */
+enum
+{
+    Start, Alpha
+};
+
+enum
+{
+    StateA, StateB, StateC
+};
+
 /* ------------------------------- Data types ------------------------------ */
+typedef struct DoWhile DoWhile;
+struct DoWhile
+{
+    int state;  /* it should be a private attribute */
+    int x;      /* it should be a private attribute */
+    int i;      /* it should be a private attribute */
+    int out;
+};
+
 /* -------------------------- External variables --------------------------- */
+extern DoWhile *doWhile;
+
 /* -------------------------- Function prototypes -------------------------- */
+void DoWhile_init(int x);
+int DoWhile_dispatch(int event);
+
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
 }
