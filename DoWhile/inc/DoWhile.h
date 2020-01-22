@@ -27,7 +27,7 @@ extern "C" {
 /* -------------------------------- Constants ------------------------------ */
 enum
 {
-    Start, Alpha
+    Start, Alpha, Up, Down
 };
 
 enum
@@ -49,7 +49,7 @@ struct DoWhile
 extern DoWhile *doWhile;
 
 /* -------------------------- Function prototypes -------------------------- */
-void DoWhile_init(int x);
+void DoWhile_init(void);
 int DoWhile_dispatch(int event);
 
 /* -------------------- External C language linkage end -------------------- */

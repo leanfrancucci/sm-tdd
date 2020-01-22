@@ -29,11 +29,11 @@ static DoWhile doWhileObj;
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
 void
-DoWhile_init(int x)
+DoWhile_init(void)
 {
     doWhile = &doWhileObj;
     doWhile->state = StateA;
-    doWhile->x = x;
+    doWhile->x = 0;
     doWhile->out = 0;
 }
 
@@ -43,10 +43,23 @@ DoWhile_dispatch(int event)
     switch(doWhile->state)
     {
         case StateA:
-            if (event == Start)
+            switch(event)
             {
-                doWhile->i = 0;
-                doWhile->state = StateB;
+                case Start:
+                    doWhile->i = 0;
+                    doWhile->state = StateB;
+                    break;
+                case Up:
+                    ++doWhile->x;
+                    break;
+                case Down:
+                    if (doWhile->x > 0)
+                    {
+                        --doWhile->x;
+                    }
+                    break;
+                default:
+                    break;
             }
             break;
         case StateB:
