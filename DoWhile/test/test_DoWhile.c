@@ -48,7 +48,8 @@ test_AfterInitilizingDataAreSet(void)
 void
 test_IncrementX(void)
 {
-    int state, nStep = 4, i;
+    State state;
+    int nStep = 4, i;
 
     DoWhile_init();
     for (i = 0; i < nStep; ++i)
@@ -63,7 +64,7 @@ test_IncrementX(void)
 void
 test_DecrementX(void)
 {
-    int state;
+    State state;
 
     DoWhile_init();
     state = DoWhile_dispatch(Up);
@@ -78,7 +79,7 @@ test_DecrementX(void)
 void
 test_OutOfBoundsChangesNothing(void)
 {
-    int state;
+    State state;
 
     DoWhile_init();
     state = DoWhile_dispatch(Down);
@@ -90,21 +91,22 @@ test_OutOfBoundsChangesNothing(void)
 void
 test_SingleIteration(void)
 {
-    int state;
+    State state;
 
     DoWhile_init();
     state = DoWhile_dispatch(Up);
     state = DoWhile_dispatch(Start);
     state = DoWhile_dispatch(Alpha);
 
-    TEST_ASSERT_EQUAL(StateC, state);
     TEST_ASSERT_EQUAL(1, doWhile->out);
+    TEST_ASSERT_EQUAL(StateC, state);
 }
 
 void
 test_MultipleIterations(void)
 {
-    int i, state, nIter = 4;
+    State state;
+    int i, nIter = 4;
 
     DoWhile_init();
     for (i = 0; i < nIter; ++i)
@@ -117,21 +119,21 @@ test_MultipleIterations(void)
         state = DoWhile_dispatch(Alpha);
     }
 
-    TEST_ASSERT_EQUAL(StateC, state);
     TEST_ASSERT_EQUAL(nIter, doWhile->out);
+    TEST_ASSERT_EQUAL(StateC, state);
 }
 
 void
 test_NoneIteration(void)
 {
-    int state;
+    State state;
 
     DoWhile_init();
     state = DoWhile_dispatch(Start);
     state = DoWhile_dispatch(Alpha);
 
-    TEST_ASSERT_EQUAL(StateB, state);
     TEST_ASSERT_EQUAL(0, doWhile->out);
+    TEST_ASSERT_EQUAL(StateB, state);
 }
 
 /* ------------------------------ End of file ------------------------------ */

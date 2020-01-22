@@ -37,8 +37,8 @@ DoWhile_init(void)
     doWhile->out = 0;
 }
 
-int
-DoWhile_dispatch(int event)
+State
+DoWhile_dispatch(Event event)
 {
     switch(doWhile->state)
     {

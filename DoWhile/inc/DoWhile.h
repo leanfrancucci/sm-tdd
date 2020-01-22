@@ -25,12 +25,14 @@ extern "C" {
 
 /* --------------------------------- Macros -------------------------------- */
 /* -------------------------------- Constants ------------------------------ */
-enum
+typedef enum Event Event;
+enum Event
 {
     Start, Alpha, Up, Down
 };
 
-enum
+typedef enum State State;
+enum State
 {
     StateA, StateB, StateC
 };
@@ -39,9 +41,9 @@ enum
 typedef struct DoWhile DoWhile;
 struct DoWhile
 {
-    int state;  /* it should be a private attribute */
-    int x;      /* it should be a private attribute */
-    int i;      /* it should be a private attribute */
+    State state;    /* it should be a private attribute */
+    int x;          /* it should be a private attribute */
+    int i;          /* it should be a private attribute */
     int out;
 };
 
@@ -50,7 +52,7 @@ extern DoWhile *doWhile;
 
 /* -------------------------- Function prototypes -------------------------- */
 void DoWhile_init(void);
-int DoWhile_dispatch(int event);
+State DoWhile_dispatch(Event event);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
