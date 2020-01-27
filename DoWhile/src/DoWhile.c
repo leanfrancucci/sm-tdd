@@ -34,7 +34,7 @@ DoWhile_init(void)
     doWhile = &doWhileObj;
     doWhile->state = StateA;
     doWhile->x = 0;
-    doWhile->out = 0;
+    doWhile->output = 0;
 }
 
 State
@@ -50,12 +50,12 @@ DoWhile_dispatch(Event event)
                     doWhile->state = StateB;
                     break;
                 case Up:
-                    ++doWhile->x;
+                    doWhile->x++;
                     break;
                 case Down:
                     if (doWhile->x > 0)
                     {
-                        --doWhile->x;
+                        doWhile->x--;
                     }
                     break;
                 default:
@@ -65,10 +65,10 @@ DoWhile_dispatch(Event event)
         case StateB:
             if (event == Alpha)
             {
-                ++doWhile->i;
+                doWhile->i++;
                 if (doWhile->i == doWhile->x)
                 {
-                    doWhile->out = doWhile->i;
+                    doWhile->output = doWhile->i;
                     doWhile->state = StateC;
                 }
             }

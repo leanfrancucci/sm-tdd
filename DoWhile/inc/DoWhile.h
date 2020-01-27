@@ -44,7 +44,7 @@ struct DoWhile
     State state;    /* it should be a private attribute */
     int x;          /* it should be a private attribute */
     int i;          /* it should be a private attribute */
-    int out;
+    int output;
 };
 
 /* -------------------------- External variables --------------------------- */

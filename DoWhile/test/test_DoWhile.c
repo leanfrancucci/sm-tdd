@@ -41,7 +41,7 @@ test_AfterInitilizingDataAreSet(void)
     DoWhile_init();
 
     TEST_ASSERT_EQUAL(0, doWhile->x);
-    TEST_ASSERT_EQUAL(0, doWhile->out);
+    TEST_ASSERT_EQUAL(0, doWhile->output);
     TEST_ASSERT_EQUAL(StateA, doWhile->state);
 }
 
@@ -98,7 +98,7 @@ test_SingleIteration(void)
     state = DoWhile_dispatch(Start);
     state = DoWhile_dispatch(Alpha);
 
-    TEST_ASSERT_EQUAL(1, doWhile->out);
+    TEST_ASSERT_EQUAL(1, doWhile->output);
     TEST_ASSERT_EQUAL(StateC, state);
 }
 
@@ -119,7 +119,7 @@ test_MultipleIterations(void)
         state = DoWhile_dispatch(Alpha);
     }
 
-    TEST_ASSERT_EQUAL(nIter, doWhile->out);
+    TEST_ASSERT_EQUAL(nIter, doWhile->output);
     TEST_ASSERT_EQUAL(StateC, state);
 }
 
@@ -132,7 +132,7 @@ test_NoneIteration(void)
     state = DoWhile_dispatch(Start);
     state = DoWhile_dispatch(Alpha);
 
-    TEST_ASSERT_EQUAL(0, doWhile->out);
+    TEST_ASSERT_EQUAL(0, doWhile->output);
     TEST_ASSERT_EQUAL(StateB, state);
 }
 
